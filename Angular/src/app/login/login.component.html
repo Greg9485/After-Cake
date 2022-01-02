@@ -1,0 +1,87 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<!--nav class="navbar navbar-expand-lg navbar-dark" style="background-color:rgb(219, 21, 170)">
+
+  <a routerLink="" class="navbar-brand" style="color:white;">After Cake</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" (click)="onOpenModal(undefined, 'add')">Add User<span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <a class="nav-link" style="color: white" (click)="onOpenModal(undefined, 'signIn')">Sign In<span class="sr-only">(current)</span></a>
+    <a class="nav-link" style="color: white" (click)="onOpenModal(undefined, 'signUp')">Sign Up!<span class="sr-only">(current)</span></a>
+  </div>
+</nav-->
+
+<div class="container" id="main-container">
+    <h1 class="home-label" style="color:rgb(219, 21, 170)">After Cake</h1>
+    <h3 class="home-label" style="color:rgb(219, 21, 170)">Birthday Gift List for All Your Friends and Family!</h3>
+    
+    <div class="login-wrapper">
+        <div class="card">
+            <div class="card-body">
+                <form class="form-signin" (ngSubmit)="onSubmit(signInForm)" #signInForm="ngForm">
+                    <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
+
+                    <label for="inputUsername" class="sr-only">Username</label>
+                    <input type="email" id="username" name="username" class="form-control" 
+                    placeholder="Email..." required autofocus ngModel>
+
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    <input type="password" id="inputPassword" name="password" class="form-control" 
+                    placeholder="Password..." required autofocus ngModel>
+
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button> 
+                    <div class="alert alert-danger" role="alert" *ngIf="isFormInvalid">
+                      Please fill out all fields.
+                    </div>      
+                    <div class="alert alert-danger" role="alert" *ngIf="areCredentialsInvalid">
+                      Invalid username or password.
+                    </div>      
+                </form>
+            </div>
+
+        </div>
+    </div>
+    
+    <!--a class="login-btn" style="color: rgb(219, 21, 170)" (click)="onOpenModal(undefined, 'signIn')">Sign In<!--span class="sr-only">(current)</span- -></a>
+    <br/>
+    <a class="login-btn" style="color: rgb(219, 21, 170)" (click)="onOpenModal(undefined, 'signUp')">Sign Up!<!--span class="sr-only">(current)</span- -></a>
+    <div class="row">
+    </div>
+<!--login modal- ->
+<div id="signInModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="text-center" style="color:rgb(219, 21, 170)">Login</h1>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        </div>
+        <div class="modal-body">
+            <form class="form col-md-12 center-block">
+              <div class="form-group">
+                <input type="text" class="form-control input-lg" placeholder="Username...">
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control input-lg" placeholder="Password...">
+              </div>
+              <div class="form-group">
+                <button class="btn btn-primary btn-lg btn-block" type="submit" style="background-color:rgb(219, 21, 170)" routerLink="friend/friend.component.html">Sign In</button>
+                <span class="pull-right"><a href="#">Register</a></span><span><a href="#">Need help?</a></span>
+              </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <div class="col-md-1accordion2">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+            </div>	
+        </div>
+    </div>
+    </div>
+  </div>
+  <router-outlet></router-outlet-->
+</div>
