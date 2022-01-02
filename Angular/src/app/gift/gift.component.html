@@ -1,0 +1,149 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<!--nav class="navbar navbar-expand-lg navbar-dark" style="background-color:rgb(219, 21, 170)">
+  <a class="navbar-brand" style="color:white;">After Cake - Friends</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" (click)="onOpenFriendModal(undefined, 'addFriend')">Add Friend<span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+     <input type="search" (ngModelChange)="searchFriends(key.value)" #key="ngModel" ngModel name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search friends..." required>
+    </form>
+  </div>
+</nav-->
+
+<div class="container" id="main-gift-container">
+  
+  <a (click)="onOpenGiftModal(undefined, 'add')" class="btn btn-primary tooltips" data-placement="top"><i class="fa fa-user-plus"> Add Gift</i><span class="sr-only">(current)</span></a>  
+  <br>
+  <div class="row">
+        <div *ngFor="let gift of gifts" class="col-md-6 col-xl-3">
+            <div class="card m-b-30">
+                <div class="card-body row">
+                    <div class="col-6">
+                        <a href=""><img src="{{gift?.imageUrl}}" alt="" class="img-fluid rounded-circle w-60"></a>
+                    </div>
+                    <div class="col-6 card-title align-self-center mb-0">
+                      <!--a routerLink="/gift"--><h5 style="color:rgb(219, 21, 170)">{{gift?.name}}<span class="sr-only">(current)</span></h5><!--/a-->
+                        <!--p class="m-0">{{user?.firstName}}</p-->
+                    </div>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><i class="fa fa-phone float-right"></i>Description: {{gift?.description}}</li>
+                    <li class="list-group-item"><i class="fa fa-envelope float-right"></i>Link: {{gift?.linkUrl}}</li>
+                </ul>
+                <div class="card-body">
+                    <div class="float-right btn-group btn-group-sm">
+                        <a (click)="onOpenGiftModal(gift, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+                        <a (click)="onOpenGiftModal(gift, 'delete')" class="btn btn-secondary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+
+    <!--Add Gift Modal-->
+    <div class="modal fade" id="addGiftModal" tabindex="-1" role ="dialog" aria-labelledby="addGiftModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addGiftModalLabel">Add Gift</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form #addForm="ngForm" (ngSubmit)="onAddGift(addForm)">
+              <div class="form-group">
+                <label for="name">Gift Name</label>
+                <input type="text" ngModel name="name" class="form-control" id="name" placeholder="Gift Name" required>
+              </div>
+              <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" ngModel name="description" class="form-control" id="description" placeholder="Description" required>
+              </div>
+              <div class="form-group">
+                <label for="linkUrl">Link</label>
+                <input type="text" ngModel name="link" class="form-control" id="link" placeholder="Link" required>
+              </div> 
+              <div class="form-group">
+                <label for="imageUrl">Image URL</label>
+                <input type="text" ngModel name="imageUrl" class="form-control" id="imageUrl" placeholder="Image Url" required>
+              </div>
+              <div class="modal-footer">
+                <button type="button" id="add-friend-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary">Save changes</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="modal fade" id="editGiftModal" tabindex="-1" role="dialog" aria-labelledby="friendGiftModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="updateGiftModalLabel">Edit Gift <!--{{editEmployee?.name}}--></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form #editForm="ngForm">
+                <div class="form-group">
+                  <label for="nameame">Gift Name</label>
+                  <input type="text" ngModel="{{editGift?.name}}" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Gift Name">
+                </div>
+                  <div class="form-group">
+                    <label for="description">Description</label>
+                    <input type="text" ngModel="{{editGift?.description}}" name="description" class="form-control" id="description" aria-describedby="emailHelp" placeholder="Description">
+                  </div>
+                  <div class="form-group">
+                    <label for="linkUrl">Link</label>
+                    <input type="text" ngModel="{{editGift?.linkUrl}" name="linkUrl" class="form-control" id="linkUrl" aria-describedby="emailHelp" placeholder="Link">
+                  </div>
+                  <div class="form-group">
+                    <label for="imageUrl">Image URL</label>
+                    <input type="text" ngModel="{{editGift?.imageUrl}}" name="imageUrl" class="form-control" id="imageUrl" placeholder="Image URL">
+                  </div>
+                  <input type="hidden" ngModel="{{editGift?.id}}" name="id" class="giftId" id="id" placeholder="Id">
+                  <input type="hidden" ngModel="{{editGift?.giftCode}}" name="giftCode" class="giftCode" id="giftCode" placeholder="giftCode">
+                  <div class="modal-footer">
+                    <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                    <button (click)="onUpdateGift(editForm.value)" data-dismiss="modal" class="btn btn-primary">Save changes</button>
+                  </div>
+              </form>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Delete Modal -->
+    <div class="modal fade" id="deleteGiftModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="deleteModelLabel">Delete Gift</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Are you sure you want to delete {{deleteGift?.name}}?</p>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                  <button (click)="onDeleteGift(deleteGift!.id)" class="btn btn-danger" data-dismiss="modal">Yes</button>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
